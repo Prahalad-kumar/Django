@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Patient</title>
+  <style>
+    body{font-family:Arial, sans-serif;background:linear-gradient(135deg,#a18cd1 0%,#fbc2eb 100%);display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0}
+    .card{backdrop-filter:blur(20px);background:rgba(255,255,255,.55);padding:40px 45px;border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,.15);width:420px;box-sizing:border-box;}
+    h2{text-align:center;margin-top:0;margin-bottom:20px;color:#333}
+    label{display:block;margin-bottom:6px;font-size:14px;color:#444}
+    input,textarea{width:100%;box-sizing:border-box;padding:10px 12px;margin-bottom:16px;border:1px solid #ccc;border-radius:28px;font-size:14px;box-shadow:0 2px 6px rgba(0,0,0,.05);transition:.3s;padding-left:38px;background:rgba(0,0,0,0.7);color:#fff;}
+    input:focus,textarea:focus{outline:none;border-color:#4b7bec;box-shadow:0 0 8px rgba(75,123,236,.7);}  
+    ::placeholder{color:#ccff00;opacity:0.9;font-weight:bold;background:rgba(0,0,0,0.3);padding:2px 6px;border-radius:4px;}
+    button{width:100%;padding:12px;border:none;border-radius:28px;font-size:15px;cursor:pointer;background:linear-gradient(90deg,#4b7bec,#706fd3);color:#fff;transition:.3s;box-shadow:0 4px 12px rgba(0,0,0,0.2);}
+    button:hover{transform:scale(1.05);opacity:.95;}
+    form{display:flex;flex-direction:column;align-items:center;}
+    input,textarea,button{max-width:100%;}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🩺 Add Patient</h2>
+    <form method='post' id ="patientForm">
+        {%csrf_token%}
+      <label>👤 First Name</label>
+      <input type="text" name="first_name" id="fname" placeholder="Enter first name" required />
+      <label>👤 Last Name</label>
+      <input type="text" name="last_name" id="lname" placeholder="Enter last name" required />
+      <label>📧 Email</label>
+      <input type="email" name="email" id="email" placeholder="example@mail.com" required />
+      <label>🎂 Date of Birth</label>
+      <input type="date" name="dob" id="dob" required />
+      <label>📞 Mobile Number</label>
+      <input type="tel" name="mobile_num" id="mob" pattern="[0-9]{10}" placeholder="10‑digit mobile" required />
+      <label>🏠 Address</label>
+      <textarea id="addr" name="address" rows="3" placeholder="Full address" required></textarea>
+      <button type="submit">Save Patient</button>
+    </form>
+  </div>
+
+
+</body>
+</html>

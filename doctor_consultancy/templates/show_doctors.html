@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctors List | HealthCare Hub</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:"Poppins", Arial, sans-serif; }
+    body {
+      min-height:100vh;
+      background: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
+      color:#fff;
+      padding:40px 20px;
+    }
+
+    h2 {
+      text-align:center;
+      color:#4b7bec;
+      margin-bottom:30px;
+      font-size:32px;
+    }
+
+    table {
+      width:100%;
+      border-collapse: collapse;
+      background: rgba(255,255,255,0.08);
+      border-radius:10px;
+      overflow:hidden;
+      box-shadow:0 8px 20px rgba(0,0,0,0.5);
+    }
+
+    th, td {
+      padding:14px 18px;
+      text-align:left;
+    }
+
+    th {
+      background: rgba(75,123,236,0.8);
+      color:#fff;
+      font-size:16px;
+    }
+
+    tr:nth-child(even) {
+      background: rgba(255,255,255,0.05);
+    }
+
+    tr:hover {
+      background: rgba(255,255,255,0.12);
+      transform: scale(1.01);
+      transition: 0.2s;
+    }
+
+    td {
+      font-size:15px;
+    }
+
+    .emoji {
+      font-size:18px;
+      margin-right:6px;
+    }
+
+    .back-link {
+      text-align:center;
+      margin-top:25px;
+    }
+
+    .back-link a {
+      color:#4b7bec;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    .back-link a:hover {
+      text-decoration:underline;
+    }
+
+    @media(max-width:768px){
+      th, td { padding:10px; font-size:14px; }
+      h2 { font-size:28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🩺 Our Doctors</h2>
+
+  <table>
+    <tr>
+      <th>👤 Name</th>
+      <th>📧 Email</th>
+      <th>🩺 Specialization</th>
+      <th>📱 Mobile</th>
+      <th>🏠 Address</th>
+    </tr>
+    {% for doc in doctors %}
+    <tr>
+      <td>{{ doc.first_name }} {{ doc.last_name }}</td>
+      <td>{{ doc.email }}</td>
+      <td>{{ doc.specialization }}</td>
+      <td>{{ doc.mobile_num }}</td>
+      <td>{{ doc.address }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="5" style="text-align:center;">No doctors registered yet 😔</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <div class="back-link">
+    <p>← <a href="{% url 'home' %}">Back to Home</a></p>
+  </div>
+
+</body>
+</html>

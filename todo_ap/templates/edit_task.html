@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Task</title>
+  <style>
+    body {
+      background: #121212;
+      display: flex; justify-content: center; align-items: center;
+      height: 100vh; font-family: "Poppins", sans-serif; color: #fff;
+    }
+    .edit-container {
+      background: #1e1e1e; padding: 2rem; border-radius: 12px;
+      width: 90%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+    h2 { text-align: center; margin-bottom: 1.5rem; color: #00bfa6; }
+    input {
+      width: 100%; padding: 0.8rem; margin-bottom: 1rem;
+      border: none; border-radius: 8px; background: #2b2b2b; color: #fff;
+    }
+    input:focus { border: 1px solid #00bfa6; background:#333; }
+    button {
+      width: 100%; padding: 0.8rem; border: none; border-radius: 8px;
+      background: #00bfa6; color: #fff; cursor: pointer;
+    }
+    button:hover { background: #00a38e; }
+    .back-link { text-align: center; margin-top: 1rem; }
+    .error { color: #ff5252; text-align: center; margin-bottom: 1rem; }
+    .success { color: #00e0c4; text-align: center; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="edit-container">
+    <h2>Edit Task</h2>
+
+    {% if messages %}
+      {% for message in messages %}
+        <p class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="task_text" value="{{ task.title }}" required>
+      <button type="submit">Update Task</button>
+    </form>
+
+    <div class="back-link">
+      <p><a href="{% url 'home' %}" style="color:#00bfa6;">Cancel & Back</a></p>
+    </div>
+  </div>
+</body>
+</html>
